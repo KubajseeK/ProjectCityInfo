@@ -7,7 +7,7 @@ public class City {
     private String twoCode;
     private String country;
 
-    public City(String name, int population, String threeCode, String twoCode, String country) {
+    public City(String name, int population, String threeCode, String twoCode,String country) {
         this.name = name;
         this.population = population;
         this.threeCode = threeCode;
@@ -34,4 +34,5 @@ public class City {
     public String getCountry() {
         return country;
     }
+
 }
