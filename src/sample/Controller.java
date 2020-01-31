@@ -104,8 +104,8 @@ public class Controller {
                 lblSet.setOpacity(1);
                 for (City c:cities) {
                     if (c.getName().equals(city)) {
-                        lblRise.setText("Sunrise: " + new WebWeather().getData(city, c.getTwoCode()).getSunRise());
-                        lblSet.setText("Sunset: " + new WebWeather().getData(city, c.getTwoCode()).getSunSet());
+                        lblRise.setText("Sunrise: " + getTimeFormat(new WebWeather().getData(city, c.getTwoCode()).getSunRise()));
+                        lblSet.setText("Sunset: " + getTimeFormat(new WebWeather().getData(city, c.getTwoCode()).getSunSet()));
                         lblVis.setText("Visibility: " + new WebWeather().getData(city, c.getTwoCode()).getVisibility() / 1000 + "km");
                     }
                 }
@@ -115,6 +115,24 @@ public class Controller {
                 lblSet.setOpacity(0);
             }
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public String getTimeFormat(long number) {
+        return new java.text.SimpleDateFormat("HH:mm:ss").format(new java.util.Date (number*1000));
+    }
+
+    public void clickBtnOpenWeb(ActionEvent actionEvent) {
+        String city = (String) comboCity.getValue();
+        try {
+            for (City c:cities) {
+                if (c.getName().equals(city)) {
+                    String url = "https://www.google.com/maps/@" + new WebWeather().getData(city, c.getTwoCode()).getLat() + "," +
+                            new WebWeather().getData(city, c.getTwoCode()).getLon() + "," + "13z";
+                    java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

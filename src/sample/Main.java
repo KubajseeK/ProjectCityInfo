@@ -15,7 +15,7 @@ public class Main extends Application {
 
         new WebWeather().getData("kosice","sk");
 
-        primaryStage.setScene(new Scene(root, 500, 200));
+        primaryStage.setScene(new Scene(root, 550, 250));
         primaryStage.show();
     }
 
